@@ -43,5 +43,17 @@ public class hashTest {
         logger.info("碰撞后 key：{} value：{}", "09", map.get("09"));
     }
 
+    @Test
+    public void test_hashMap03() {
+        Map<String, String> map = new hash03<>();
+        map.put("01", "花花");
+        map.put("05", "豆豆");
+        logger.info("碰撞前 key：{} value：{}", "01", map.get("01"));
+        // 下标碰撞
+        map.put("09", "蛋蛋");
+        map.put("12", "苗苗");
+        logger.info("碰撞前 key：{} value：{}", "01", map.get("01"));
+    }
+
 
 }
