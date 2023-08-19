@@ -73,13 +73,29 @@ public class ArrayList<E> implements List<E> {
     }
 
 
+    /**
+     * 移除元素
+     * ArrayList 的重点离不开对 System.arraycopy 的使用
+     * 从原数组特定的位置迁移到新数组指定位置和数量
+     *
+     * @param index
+     * @return
+     */
     @Override
     public E remove(int index) {
-        return null;
+        E oldValue = (E) elementData[index];
+        int numMoved = size - index - 1;
+        if (numMoved > 0) {
+            //这里的这段意思就是index位置的后面的换上来 然后将要移除的元素放在最后面 最后删除即可
+            System.arraycopy(elementData, index + 1, elementData, index, numMoved);
+        }
+        //clear to let GC do its work
+        elementData[--size] = null;
+        return oldValue;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        return (E) elementData[index];
     }
 }
